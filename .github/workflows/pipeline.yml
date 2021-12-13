@@ -1,0 +1,70 @@
+---
+# https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions
+
+name: CI Pipeline
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  validate:
+    if: ${{ always() }}
+    name: Validate
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Project
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 12
+          cache: npm
+
+      - name: Install Requirements & Dependencies
+        run: |
+          npm run setup:validate
+
+      - name: Validating Project
+        run: |
+          npm run lint:ci
+        continue-on-error: true
+
+      - name: Uploading Artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: validate-log-artifact
+          path: analyzer/**/*.log
+          retention-days: 1
+
+  release:
+    if: ${{ always() }}
+    needs: [validate]
+    name: Release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Project
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 12
+          cache: npm
+
+      - name: Install NPM CI
+        run: |
+          npm ci --ignore-scripts
+
+      - name: Release Project
+        run: |
+          npx semantic-release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

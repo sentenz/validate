@@ -1,0 +1,13 @@
+[**/node_modules/*]
+ignore = true
+
+[**/vendor/*]
+ignore = true
+
+[*.sh]
+indent_style = space
+indent_size = 2
+keep_padding = false
+switch_case_indent = true
+space_redirects = true
+max_line_length = 80

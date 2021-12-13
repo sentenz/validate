@@ -1,0 +1,7 @@
+# Ignore artifacts
+build
+vendor
+coverage
+
+# Ignore all files
+*.json
