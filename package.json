@@ -1,8 +1,14 @@
 {
+  "name": "validate-service",
   "version": "0.0.0",
   "private": true,
+  "homepage": "https://github.com/sentenz/validate-service#readme",
+  "bugs": "https://github.com/sentenz/validate-service/issues",
+  "description": "Technical Analysis application in Go for the Exchange API",
+  "author": "Sentenz",
   "repository": {
-    "type": "git"
+    "type": "git",
+    "url": "https://github.com/sentenz/validate-service.git"
   },
   "scripts": {
     "test": "run-s lint:staged",
