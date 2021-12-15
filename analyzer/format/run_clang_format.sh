@@ -59,7 +59,7 @@ readonly LIST
 
 # Run analyzer
 if [[ -n "${LIST}" ]]; then
-  readonly CLI="clang-format"
+  readonly CLI="clang-format --dry-run"
 
   (
     cd "${PATH_CONFDIR}" || exit
