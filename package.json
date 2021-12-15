@@ -4,8 +4,8 @@
   "private": true,
   "homepage": "https://github.com/sentenz/validate-service#readme",
   "bugs": "https://github.com/sentenz/validate-service/issues",
-  "description": "Technical Analysis application in Go for the Exchange API",
   "author": "Sentenz",
+  "license": "Apache License 2.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/sentenz/validate-service.git"

@@ -2,65 +2,64 @@
 
 Scripts to perform various install, analysis, test, build or release operations.
 
-- [`/analyzer`](#analyzer)
-  - [Git](#git)
-    - [Hooks](#hooks)
-    - [Requirements](#requirements)
-    - [Install](#install)
-    - [Usage](#usage)
-  - [Husky](#husky)
-    - [Requirements](#requirements-1)
-    - [Install](#install-1)
-    - [Uninstall](#uninstall)
-    - [Configuration](#configuration)
-    - [Troubelshoot](#troubelshoot)
-  - [Node.js](#nodejs)
-    - [Requirements](#requirements-2)
-    - [Install](#install-2)
-    - [Usage](#usage-1)
-    - [Configuration](#configuration-1)
-  - [Directories](#directories)
-    - [`/env`](#env)
-    - [`/lint`](#lint)
-    - [`/check`](#check)
-    - [`/format`](#format)
-    - [`/legal`](#legal)
-  - [`/version`](#version)
+- [1. Git](#1-git)
+  - [1.1. Hooks](#11-hooks)
+  - [1.2. Requirements](#12-requirements)
+  - [1.3. Install](#13-install)
+  - [1.4. Usage](#14-usage)
+- [2. Husky](#2-husky)
+  - [2.1. Requirements](#21-requirements)
+  - [2.2. Install](#22-install)
+  - [2.3. Uninstall](#23-uninstall)
+  - [2.4. Configuration](#24-configuration)
+  - [2.5. Troubelshoot](#25-troubelshoot)
+- [3. Node.js](#3-nodejs)
+  - [3.1. Requirements](#31-requirements)
+  - [3.2. Install](#32-install)
+  - [3.3. Usage](#33-usage)
+  - [3.4. Configuration](#34-configuration)
+- [4. Directories](#4-directories)
+  - [4.1. `/env`](#41-env)
+  - [4.2. `/lint`](#42-lint)
+  - [4.3. `/check`](#43-check)
+  - [4.4. `/format`](#44-format)
+  - [4.5. `/legal`](#45-legal)
+- [5. `/version`](#5-version)
 
-## Git
+## 1. Git
 
 [Git](https://git-scm.com/)
 
-### Hooks
+### 1.1. Hooks
 
 [githooks](https://git-scm.com/docs/githooks)
 
-### Requirements
+### 1.2. Requirements
 
 `apt` package management system for installing, upgrading, configuring, and removing software.
 
-### Install
+### 1.3. Install
 
 ```bash
 sudo apt install -y git
 ```
 
-### Usage
+### 1.4. Usage
 
 ```bash
 git init
 ```
 
-## Husky
+## 2. Husky
 
 Husky improves your commits and more with modern native Git hooks.
 
-### Requirements
+### 2.1. Requirements
 
 - NPM 6.14.14 or higher.
 - Node 12+
 
-### Install
+### 2.2. Install
 
 Install [husky](https://www.npmjs.com/package/husky?ref=hackernoon.com) with npm (Node package manager).
 
@@ -112,14 +111,14 @@ Install [husky](https://www.npmjs.com/package/husky?ref=hackernoon.com) with npm
      npx husky add .husky/commit-msg "npx --no-install commitlint --edit"
      ```
 
-### Uninstall
+### 2.3. Uninstall
 
 ```bash
 sudo npm uninstall -g husky
 git config --unset core.hooksPath
 ```
 
-### Configuration
+### 2.4. Configuration
 
 - [Bypass hooks](https://typicode.github.io/husky/#/?id=bypass-hooks)
 
@@ -139,7 +138,7 @@ git config --unset core.hooksPath
   npm ci --omit=dev --ignore-scripts
   ```
 
-### Troubelshoot
+### 2.5. Troubelshoot
 
 Sporadically there are problems with newer npm versions. Especially when combining sudo with npm commands the following error (or variants of it) occurs:
 
@@ -163,13 +162,13 @@ Therefore, follow these rules for manual installations:
    npm install <package> --unsafe-perm
    ```
 
-## Node.js
+## 3. Node.js
 
-### Requirements
+### 3.1. Requirements
 
 `apt` package management system for installing, upgrading, configuring, and removing software.
 
-### Install
+### 3.2. Install
 
 Installing Node.js via package manager. Debian and Ubuntu based Linux distributions are available from [Node.js binary distributions](https://github.com/nodesource/distributions/blob/master/README.md).
 
@@ -181,7 +180,7 @@ curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
 sudo apt install -y nodejs
 ```
 
-### Usage
+### 3.3. Usage
 
 Install `npm`, the Node.js package manager.
 
@@ -189,7 +188,7 @@ Install `npm`, the Node.js package manager.
 sudo apt install -y npm
 ```
 
-### Configuration
+### 3.4. Configuration
 
 [Configuring npm](https://docs.npmjs.com/cli/v6/configuring-npm).
 
@@ -211,9 +210,9 @@ A package.json file:
 npm install
 ```
 
-## Directories
+## 4. Directories
 
-### `/env`
+### 4.1. `/env`
 
 Scripts to `setup` the environment, run tests and build the application via CLI.
 
@@ -221,7 +220,7 @@ Scripts to `setup` the environment, run tests and build the application via CLI.
 - [ ] build
 - [x] install
 
-### `/lint`
+### 4.2. `/lint`
 
 Linting scripts to `validate` the code base via CLI.
 
@@ -235,7 +234,7 @@ Linting scripts to `validate` the code base via CLI.
 - [x] commitlint
 - [x] jsonlint
 
-### `/check`
+### 4.3. `/check`
 
 Checking scripts to `validate` the code base via CLI.
 
@@ -252,7 +251,7 @@ Checking scripts to `validate` the code base via CLI.
 - [x] alex
 - [x] codespell
 
-### `/format`
+### 4.4. `/format`
 
 Formatting scripts to `validate` the code base via CLI.
 
@@ -261,7 +260,7 @@ Formatting scripts to `validate` the code base via CLI.
 - [x] shfmt
 - [x] [markdown-table-formatter](https://github.com/nvuillam/markdown-table-formatter)
 
-### `/legal`
+### 4.5. `/legal`
 
 Legalization scripts to `validate` the code base via CLI.
 
@@ -269,7 +268,7 @@ Legalization scripts to `validate` the code base via CLI.
 - [ ] [golicense](https://github.com/mitchellh/golicense)
 - [x] licensecheck
 
-## `/version`
+## 5. `/version`
 
 Versioning scripts for the CI/CD pipeline. Including an automated `release` workflow with determining the next version number, creating release notes and publishing the package.
 
