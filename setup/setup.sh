@@ -12,6 +12,7 @@ set -uo pipefail
 
 PATH_SCRIPTDIR="$(dirname "$(realpath "$0")")"
 readonly PATH_SCRIPTDIR
+readonly TASK_PRINT="Setup - validate"
 
 # Internal functions
 
@@ -45,7 +46,7 @@ chmod +x setup_requirements.sh
 result=$?
 ((retval |= result))
 
-monitor "Setup" "requirements" "${result}"
+monitor "${TASK_PRINT}" "requirements" "${result}"
 
 # Run analyzer installation
 chmod +x setup_analyzer.sh
@@ -54,7 +55,7 @@ chmod +x setup_analyzer.sh
 result=$?
 ((retval |= result))
 
-monitor "Setup" "analyzer" "${result}"
+monitor "${TASK_PRINT}" "analyzer" "${result}"
 
 if ((result == 1)); then
   exit "${retval}"

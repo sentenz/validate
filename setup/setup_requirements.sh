@@ -12,7 +12,24 @@ set -uo pipefail
 
 PATH_TOPLEVEL="$(git rev-parse --show-superproject-working-tree --show-toplevel | head -1)"
 readonly PATH_TOPLEVEL
-readonly TASK="Validate - requirement"
+readonly TASK_PRINT="Validate - requirement"
+readonly -a APT_PACKAGES=(
+  build-essential
+  git
+  automake
+  python3.8
+  python-is-python3
+  python3-pip
+  gcc-9
+  snapd
+  cmake
+  apt-transport-https
+  lsb-release
+  ca-certificates
+  curl
+  dirmngr
+  nodejs
+)
 
 # Internal functions
 
@@ -50,7 +67,7 @@ function install_apt_dependency() {
     ((result = $?))
   fi
 
-  monitor "${TASK}" "${package}" "${result}"
+  monitor "${TASK_PRINT}" "${package}" "${result}"
 
   return "${result}"
 }
@@ -69,63 +86,15 @@ sudo add-apt-repository -y ppa:git-core/ppa
 sudo apt update -y -qq && sudo apt upgrade -y -qq
 ((retval |= $?))
 
+curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
+((retval |= $?))
+
 # Install apt requirements
 
-install_apt_dependency build-essential
-((retval |= $?))
-
-install_apt_dependency git
-((retval |= $?))
-
-install_apt_dependency automake
-((retval |= $?))
-
-install_apt_dependency python3.8
-((retval |= $?))
-
-install_apt_dependency python-is-python3
-((retval |= $?))
-
-install_apt_dependency python3-pip
-((retval |= $?))
-
-install_apt_dependency gcc-9
-((retval |= $?))
-
-install_apt_dependency snapd
-((retval |= $?))
-
-install_apt_dependency cmake
-((retval |= $?))
-
-install_apt_dependency apt-transport-https
-((retval |= $?))
-
-install_apt_dependency lsb-release
-((retval |= $?))
-
-install_apt_dependency ca-certificates
-((retval |= $?))
-
-install_apt_dependency curl
-((retval |= $?))
-
-install_apt_dependency dirmngr
-((retval |= $?))
-
-# TODO(AK) command -v npm still valid even node is uninstalled
-if command -v node &> /dev/null && ! command -v npm &> /dev/null; then
-  sudo apt remove nodejs
+for package in "${APT_PACKAGES[@]}"; do
+  install_apt_dependency "${package}"
   ((retval |= $?))
-  curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
-  sudo apt install -y -qq nodejs
-  ((retval |= $?))
-elif ! command -v node &> /dev/null; then
-  curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
-  sudo apt install -y -qq nodejs
-  ((retval |= $?))
-fi
-monitor "${TASK}" "nodejs" "${retval}"
+done
 
 # Install go requirements
 

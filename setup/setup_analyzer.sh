@@ -14,7 +14,59 @@ PATH_TOPLEVEL="$(git rev-parse --show-superproject-working-tree --show-toplevel 
 readonly PATH_TOPLEVEL
 PATH_SCRIPTDIR="$(dirname "$(realpath "$0")")"
 readonly PATH_SCRIPTDIR
-readonly TASK="Validate - analyzer"
+readonly TASK_PRINT="Validate - analyzer"
+readonly -a APT_PACKAGES=(
+  licensecheck
+  shellcheck
+  cppcheck
+  clang-tools
+  clang-tidy
+  clang-format
+  valgrind
+)
+readonly -a PIP_PACKAGES=(
+  scan-build
+  codespell
+  cpplint
+  cmake_format
+  yamllint
+)
+readonly -a NPM_PACKAGES=(
+  npm-run-all
+  alex
+  prettier
+  jsonlint
+  remark-cli
+  remark-preset-lint-markdown-style-guide
+  remark-preset-lint-recommended
+  remark-preset-lint-consistent
+  remark-lint-list-item-indent
+  remark-lint-maximum-line-length
+  remark-lint-ordered-list-marker-value
+  remark-lint-emphasis-marker
+  remark-lint-strong-marker
+  markdownlint
+  markdownlint-cli
+  markdown-link-check
+  markdown-spellcheck
+  @commitlint/cli
+  @commitlint/config-conventional
+  @commitlint/format
+  semantic-release
+  semantic-commitlint
+  semantic-release-commitlint
+  semantic-release-ado
+  @semantic-release/npm
+  @semantic-release/git
+  @semantic-release/changelog
+  @semantic-release/error
+  @semantic-release/github
+  @semantic-release/commit-analyzer
+  @semantic-release/release-notes-generator
+  husky
+  pre-commit
+  commit-msg
+)
 
 # Internal functions
 
@@ -60,7 +112,7 @@ function install_apt_dependency() {
     ((result = $?))
   fi
 
-  monitor "${TASK}" "${package}" "${result}"
+  monitor "${TASK_PRINT}" "${package}" "${result}"
 
   return "${result}"
 }
@@ -75,7 +127,7 @@ function install_pip_dependency() {
     ((result = $?))
   fi
 
-  monitor "${TASK}" "${package}" "${result}"
+  monitor "${TASK_PRINT}" "${package}" "${result}"
 
   return "${result}"
 }
@@ -90,7 +142,7 @@ function install_npm_dependency() {
     ((result |= $?))
   fi
 
-  monitor "${TASK}" "${package}" "${result}"
+  monitor "${TASK_PRINT}" "${package}" "${result}"
 
   return "${result}"
 }
@@ -107,7 +159,7 @@ function install_curl_dependency() {
     export PATH="${HOME}"/.local/bin:"${PATH}"
   fi
 
-  monitor "${TASK}" "${package}" "${result}"
+  monitor "${TASK_PRINT}" "${package}" "${result}"
 
   return "${result}"
 }
@@ -130,7 +182,7 @@ function install_go_dependency() {
     go mod vendor
   fi
 
-  monitor "${TASK}" "${package}" "${result}"
+  monitor "${TASK_PRINT}" "${package}" "${result}"
 
   return "${result}"
 }
@@ -153,7 +205,7 @@ function create_hook() {
     ((result |= $?))
   fi
 
-  monitor "${TASK}" "${file}" "${result}"
+  monitor "${TASK_PRINT}" "${file}" "${result}"
 
   return "${result}"
 }
@@ -180,149 +232,26 @@ declare -i retval=0
 
 # Install apt dependencies
 
-install_apt_dependency licensecheck
-((retval |= $?))
-
-install_apt_dependency shellcheck
-((retval |= $?))
-
-install_apt_dependency cppcheck
-((retval |= $?))
-
-install_apt_dependency clang-tools
-((retval |= $?))
-
-install_apt_dependency clang-tidy
-((retval |= $?))
-
-install_apt_dependency clang-format
-((retval |= $?))
-
-install_apt_dependency valgrind
-((retval |= $?))
+for package in "${APT_PACKAGES[@]}"; do
+  install_apt_dependency "${package}"
+  ((retval |= $?))
+done
 
 # Install pip dependencies
 
-install_pip_dependency scan-build
-((retval |= $?))
-
-install_pip_dependency codespell
-((retval |= $?))
-
-install_pip_dependency cpplint
-((retval |= $?))
-
-install_pip_dependency cmake_format
-((retval |= $?))
-
-install_pip_dependency yamllint
-((retval |= $?))
+for package in "${PIP_PACKAGES[@]}"; do
+  install_pip_dependency "${package}"
+  ((retval |= $?))
+done
 
 # Install npm dependencies
 
-install_npm_dependency npm-run-all
-((retval |= $?))
-
-install_npm_dependency alex
-((retval |= $?))
-
-install_npm_dependency prettier
-((retval |= $?))
-
-install_npm_dependency jsonlint
-((retval |= $?))
-
-install_npm_dependency remark-cli
-((retval |= $?))
-
-install_npm_dependency remark-preset-lint-markdown-style-guide
-((retval |= $?))
-
-install_npm_dependency remark-preset-lint-recommended
-((retval |= $?))
-
-install_npm_dependency remark-preset-lint-consistent
-((retval |= $?))
-
-install_npm_dependency remark-lint-list-item-indent
-((retval |= $?))
-
-install_npm_dependency remark-lint-maximum-line-length
-((retval |= $?))
-
-install_npm_dependency remark-lint-ordered-list-marker-value
-((retval |= $?))
-
-install_npm_dependency remark-lint-emphasis-marker
-((retval |= $?))
-
-install_npm_dependency remark-lint-strong-marker
-((retval |= $?))
-
-install_npm_dependency markdownlint
-((retval |= $?))
-
-install_npm_dependency markdownlint-cli
-((retval |= $?))
-
-install_npm_dependency markdown-link-check
-((retval |= $?))
-
-install_npm_dependency markdown-spellcheck
-((retval |= $?))
-
-install_npm_dependency @commitlint/cli
-((retval |= $?))
-
-install_npm_dependency @commitlint/config-conventional
-((retval |= $?))
-
-install_npm_dependency @commitlint/format
-((retval |= $?))
-
-install_npm_dependency semantic-release
-((retval |= $?))
-
-install_npm_dependency semantic-commitlint
-((retval |= $?))
-
-install_npm_dependency semantic-release-commitlint
-((retval |= $?))
-
-install_npm_dependency semantic-release-ado
-((retval |= $?))
-
-install_npm_dependency @semantic-release/npm
-((retval |= $?))
-
-install_npm_dependency @semantic-release/git
-((retval |= $?))
-
-install_npm_dependency @semantic-release/changelog
-((retval |= $?))
-
-install_npm_dependency @semantic-release/error
-((retval |= $?))
-
-install_npm_dependency @semantic-release/github
-((retval |= $?))
-
-install_npm_dependency @semantic-release/commit-analyzer
-((retval |= $?))
-
-install_npm_dependency @semantic-release/release-notes-generator
-((retval |= $?))
-
-install_npm_dependency husky
-((retval |= $?))
-
-install_npm_dependency pre-commit
-((retval |= $?))
+for package in "${NPM_PACKAGES[@]}"; do
+  install_npm_dependency "${package}"
+  ((retval |= $?))
+done
 
 create_hook pre-commit "npm test"
-((retval |= $?))
-
-install_npm_dependency commit-msg
 ((retval |= $?))
 
 create_hook commit-msg "npx --no-install commitlint --edit"
