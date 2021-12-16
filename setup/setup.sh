@@ -39,8 +39,8 @@ declare -i result=0
 declare -i retval=0
 
 # Run requirements installation
-chmod +x run_setup_requirements.sh
-./run_setup_requirements.sh
+chmod +x setup_requirements.sh
+./setup_requirements.sh
 
 result=$?
 ((retval |= result))
@@ -48,8 +48,8 @@ result=$?
 monitor "Setup" "requirements" "${result}"
 
 # Run analyzer installation
-chmod +x run_setup_analyzer.sh
-./run_setup_analyzer.sh
+chmod +x setup_analyzer.sh
+./setup_analyzer.sh
 
 result=$?
 ((retval |= result))

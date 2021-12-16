@@ -18,7 +18,7 @@
     "lint:staged": "cd analyzer && chmod +x validate.sh && ./validate.sh -l staged",
     "lint:ci": "cd analyzer && chmod +x validate.sh && ./validate.sh -l ci",
     "setup": "run-s setup:validate",
-    "setup:validate": "cd setup && chmod +x run_setup.sh && ./run_setup.sh"
+    "setup:validate": "cd setup && chmod +x setup.sh && ./setup.sh"
   },
   "dependencies": {
     "@semantic-release/error": "^2.2.0",
