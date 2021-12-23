@@ -15,7 +15,7 @@ readonly PATH_TOPLEVEL
 PATH_SCRIPTDIR="$(dirname "$(realpath "$0")")"
 readonly PATH_SCRIPTDIR
 readonly PATH_RCDIR="${PATH_TOPLEVEL}"
-readonly FILE_CONF=".spelling"
+readonly FILE_RC=".spelling"
 readonly FILE_LOG="${PATH_SCRIPTDIR}""/mdspell.log"
 readonly REGEX_PATTERNS="^(?!.*\/?!*(\.git|vendor|CHANGELOG.md)).*\.(md)$"
 
@@ -30,10 +30,18 @@ while getopts 'l:' flag; do
 done
 readonly L_FLAG
 
+# Set resource path
+
+readonly -a resources=(
+  "${FILE_RC}"
+)
+
 PATH_CONFDIR="${PATH_SCRIPTDIR}"
-if [[ -f "${PATH_RCDIR}"/"${FILE_CONF}" && "$(diff -q "${PATH_RCDIR}"/"${FILE_CONF}" "${PATH_SCRIPTDIR}"/"${FILE_CONF}")" ]]; then
-  PATH_CONFDIR="${PATH_RCDIR}"
-fi
+for resource in "${resources[@]}"; do
+  if [[ -f "${PATH_RCDIR}"/"${resource}" && "$(diff -q "${PATH_RCDIR}"/"${resource}" "${PATH_SCRIPTDIR}"/"${resource}")" ]]; then
+    PATH_CONFDIR="${PATH_RCDIR}"
+  fi
+done
 readonly PATH_CONFDIR
 
 # Control flow logic
@@ -59,7 +67,7 @@ readonly LIST
 
 # Run analyzer
 if [[ -n "${LIST}" ]]; then
-  readonly SORT="sort < ${PATH_CONFDIR}/${FILE_CONF} | sort | uniq | tee ${FILE_CONF}.tmp > /dev/null && mv ${FILE_CONF}.tmp ${PATH_CONFDIR}/${FILE_CONF}"
+  readonly SORT="sort < ${PATH_CONFDIR}/${FILE_RC} | sort | uniq | tee ${FILE_RC}.tmp > /dev/null && mv ${FILE_RC}.tmp ${PATH_CONFDIR}/${FILE_RC}"
   readonly CLI="mdspell -n -a -r -d --en-us --en-gb '!**/node_modules/**/*.md' '!**/vendor/**/*.md' '!**/.github/**/*.md' '!**/translations/**/*.md'"
 
   eval "${SORT}"

@@ -1,1 +1,1 @@
-^.*\.(go|h|hpp|hxx|c|cc|cpp|cxx)$
+^.*\.(h|hpp|hxx|c|cc|cpp|cxx)$

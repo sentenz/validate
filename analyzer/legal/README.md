@@ -1,14 +1,13 @@
 # `/legal`
 
-- [`/legal`](#legal)
-  - [Licensecheck](#licensecheck)
-    - [Requirements](#requirements)
-    - [Install](#install)
-    - [Usage](#usage)
-  - [Licensing](#licensing)
-    - [Requirements](#requirements-1)
-    - [Install](#install-1)
-    - [Usage](#usage-1)
+- [Licensecheck](#licensecheck)
+  - [Requirements](#requirements)
+  - [Install](#install)
+  - [Usage](#usage)
+- [Licensing](#licensing)
+  - [Requirements](#requirements-1)
+  - [Install](#install-1)
+  - [Usage](#usage-1)
 
 ## Licensecheck
 

@@ -1,10 +1,9 @@
 # `scripts/validate`
 
-- [`scripts/validate`](#scriptsvalidate)
-  - [Install](#install)
-  - [Uninstall](#uninstall)
-  - [Update](#update)
-  - [Usage](#usage)
+- [Install](#install)
+- [Uninstall](#uninstall)
+- [Update](#update)
+- [Usage](#usage)
 
 ## Install
 

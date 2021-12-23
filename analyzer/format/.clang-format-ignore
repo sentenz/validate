@@ -1,12 +1,5 @@
 # Ignore code from clang-format checks
-**/*/build/*
-../../docs/*
-../../external/*
-../../internal/tools/*
-../../internal/src/ecos/*
-../../internal/src/sntp/*
-../../scripts/*
-../../test/*
-../../third_party/*
-../../node_modules/*
-../../vendor/*
+build/*
+external/*
+node_modules/*
+vendor/*

@@ -210,7 +210,7 @@ function create_hook() {
   return "${result}"
 }
 
-function initialize() {
+function initialize_resources() {
   find "${PATH_SCRIPTDIR}""/../analyzer" -type f -name '.??*' -exec cp -n {} "${PATH_TOPLEVEL}" \;
   find "${PATH_SCRIPTDIR}""/../analyzer" -type f -name 'CPPLINT.cfg' -exec cp -n {} "${PATH_TOPLEVEL}" \;
 }
@@ -270,6 +270,6 @@ install_go_dependency github.com/golangci/golangci-lint/cmd/golangci-lint@latest
 # Uncomment the following line to clean setup
 # cleanup
 
-initialize
+initialize_resources
 
 exit "${retval}"

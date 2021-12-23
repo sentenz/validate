@@ -15,7 +15,7 @@ readonly PATH_TOPLEVEL
 PATH_SCRIPTDIR="$(dirname "$(realpath "$0")")"
 readonly PATH_SCRIPTDIR
 readonly PATH_RCDIR="${PATH_TOPLEVEL}"
-readonly FILE_CONF=".commitlintrc.js"
+readonly FILE_RC=".commitlintrc.js"
 readonly FILE_LOG="${PATH_SCRIPTDIR}""/commitlint.log"
 
 # Options
@@ -29,10 +29,18 @@ while getopts 'l:' flag; do
 done
 readonly L_FLAG
 
+# Set resource path
+
+readonly -a resources=(
+  "${FILE_RC}"
+)
+
 PATH_CONFDIR="${PATH_SCRIPTDIR}"
-if [[ -f "${PATH_RCDIR}"/"${FILE_CONF}" && "$(diff -q "${PATH_RCDIR}"/"${FILE_CONF}" "${PATH_SCRIPTDIR}"/"${FILE_CONF}")" ]]; then
-  PATH_CONFDIR="${PATH_RCDIR}"
-fi
+for resource in "${resources[@]}"; do
+  if [[ -f "${PATH_RCDIR}"/"${resource}" && "$(diff -q "${PATH_RCDIR}"/"${resource}" "${PATH_SCRIPTDIR}"/"${resource}")" ]]; then
+    PATH_CONFDIR="${PATH_RCDIR}"
+  fi
+done
 readonly PATH_CONFDIR
 
 # Control flow logic
@@ -41,19 +49,19 @@ cd "${PATH_TOPLEVEL}" || exit
 
 LIST=""
 if [[ "${L_FLAG}" == "ci" ]]; then
-  LIST=$(commitlint --from "$(git rev-parse --abbrev-ref remotes/origin/main)" --to "$(git rev-parse --abbrev-ref HEAD)" --config "${PATH_CONFDIR}"/"${FILE_CONF}")
+  LIST=$(commitlint --from "$(git rev-parse --abbrev-ref remotes/origin/main)" --to "$(git rev-parse --abbrev-ref HEAD)" --config "${PATH_CONFDIR}"/"${FILE_RC}")
 elif [[ "${L_FLAG}" == "diff" || "${L_FLAG}" == "repo" ]]; then
-  LIST=$(commitlint --from "$(git rev-parse --abbrev-ref remotes/origin/HEAD)" --to "$(git rev-parse --abbrev-ref HEAD)" --config "${PATH_CONFDIR}"/"${FILE_CONF}")
+  LIST=$(commitlint --from "$(git rev-parse --abbrev-ref remotes/origin/HEAD)" --to "$(git rev-parse --abbrev-ref HEAD)" --config "${PATH_CONFDIR}"/"${FILE_RC}")
 elif [[ "${L_FLAG}" == "staged" ]]; then
   # TODO(AK) currently husky commit-msg and run_commitlint.sh do not work together
   #EDITMSG_FILE=$(git rev-parse --git-path COMMIT_EDITMSG)
   #if [[ -z "${EDITMSG_FILE}" ]]; then
   #  exit 255
   #fi
-  #LIST=$(commitlint --edit --config "${PATH_CONFDIR}"/"${FILE_CONF}")
+  #LIST=$(commitlint --edit --config "${PATH_CONFDIR}"/"${FILE_RC}")
   exit 255
 elif [[ "${L_FLAG}" == "all" ]]; then
-  LIST=$(commitlint --to "$(git rev-parse --short HEAD)" --config "${PATH_CONFDIR}"/"${FILE_CONF}")
+  LIST=$(commitlint --to "$(git rev-parse --short HEAD)" --config "${PATH_CONFDIR}"/"${FILE_RC}")
 else
   echo "[error] Unexpected option: ${L_FLAG}" &> "${FILE_LOG}"
   exit 2

@@ -15,7 +15,11 @@ readonly PATH_TOPLEVEL
 PATH_SCRIPTDIR="$(dirname "$(realpath "$0")")"
 readonly PATH_SCRIPTDIR
 readonly PATH_RCDIR="${PATH_TOPLEVEL}"
-readonly FILE_CONF=".clang-tidy-include"
+readonly FILE_RC=".clang-tidy"
+readonly FILE_RC_FLAG=".clang-tidy-flag"
+readonly FILE_RC_MACRO=".clang-tidy-macro"
+readonly FILE_RC_INCLUDE=".clang-tidy-include"
+readonly FILE_RC_IGNORE=".clang-tidy-ignore"
 readonly FILE_LOG="${PATH_SCRIPTDIR}""/clang-tidy.log"
 readonly REGEX_PATTERNS="^(?!.*\/?!*(\.git|vendor|CHANGELOG.md)).*\.(h|hpp|hxx|c|cc|cpp|cxx)$"
 
@@ -30,18 +34,23 @@ while getopts 'l:' flag; do
 done
 readonly L_FLAG
 
-PATH_CONFDIR="${PATH_SCRIPTDIR}"
-if [[ -f "${PATH_RCDIR}"/"${FILE_CONF}" && "$(diff -q "${PATH_RCDIR}"/"${FILE_CONF}" "${PATH_SCRIPTDIR}"/"${FILE_CONF}")" ]]; then
-  PATH_CONFDIR="${PATH_RCDIR}"
-fi
-readonly PATH_CONFDIR
+# Set resource path
 
-C_FLAGS="$(< "${PATH_CONFDIR}""/.clang-tidy-flag")"
-readonly C_FLAGS
-C_MACROS="$(< "${PATH_CONFDIR}""/.clang-tidy-macro")"
-readonly C_MACROS
-C_INCLUDES="$(< "${PATH_CONFDIR}""/.clang-tidy-include")"
-readonly C_INCLUDES
+readonly -a resources=(
+  "${FILE_RC}"
+  "${FILE_RC_FLAG}"
+  "${FILE_RC_MACRO}"
+  "${FILE_RC_INCLUDE}"
+  "${FILE_RC_IGNORE}"
+)
+
+PATH_CONFDIR="${PATH_SCRIPTDIR}"
+for resource in "${resources[@]}"; do
+  if [[ -f "${PATH_RCDIR}"/"${resource}" && "$(diff -q "${PATH_RCDIR}"/"${resource}" "${PATH_SCRIPTDIR}"/"${resource}")" ]]; then
+    PATH_CONFDIR="${PATH_RCDIR}"
+  fi
+done
+readonly PATH_CONFDIR
 
 # Control flow logic
 
@@ -65,6 +74,13 @@ fi
 readonly LIST
 
 # Run analyzer
+C_FLAGS="$(< "${PATH_CONFDIR}"/${FILE_RC_FLAG})"
+readonly C_FLAGS
+C_MACROS="$(< "${PATH_CONFDIR}"/${FILE_RC_MACRO})"
+readonly C_MACROS
+C_INCLUDES="$(< "${PATH_CONFDIR}"/${FILE_RC_INCLUDE})"
+readonly C_INCLUDES
+
 if [[ -n "${LIST}" ]]; then
   readonly CLI="clang-tidy ${LIST} -- ${C_MACROS[*]} ${C_FLAGS[*]} ${C_INCLUDES[*]}"
 

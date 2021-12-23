@@ -15,7 +15,8 @@ readonly PATH_TOPLEVEL
 PATH_SCRIPTDIR="$(dirname "$(realpath "$0")")"
 readonly PATH_SCRIPTDIR
 readonly PATH_RCDIR="${PATH_TOPLEVEL}"
-readonly FILE_CONF=".licensecheck-check"
+readonly FILE_RC=".licensecheck-check"
+readonly FILE_RC_IGNORE=".licensecheck-ignore"
 readonly FILE_LOG="${PATH_SCRIPTDIR}""/licensecheck.log"
 readonly REGEX_PATTERNS="^(?!.*\/?!*(\.git|vendor|CHANGELOG.md)).*\.(h|hpp|hxx|c|cc|cpp|cxx)$"
 
@@ -30,10 +31,19 @@ while getopts 'l:' flag; do
 done
 readonly L_FLAG
 
+# Set resource path
+
+readonly -a resources=(
+  "${FILE_RC}"
+  "${FILE_RC_IGNORE}"
+)
+
 PATH_CONFDIR="${PATH_SCRIPTDIR}"
-if [[ -f "${PATH_RCDIR}"/"${FILE_CONF}" && "$(diff -q "${PATH_RCDIR}"/"${FILE_CONF}" "${PATH_SCRIPTDIR}"/"${FILE_CONF}")" ]]; then
-  PATH_CONFDIR="${PATH_RCDIR}"
-fi
+for resource in "${resources[@]}"; do
+  if [[ -f "${PATH_RCDIR}"/"${resource}" && "$(diff -q "${PATH_RCDIR}"/"${resource}" "${PATH_SCRIPTDIR}"/"${resource}")" ]]; then
+    PATH_CONFDIR="${PATH_RCDIR}"
+  fi
+done
 readonly PATH_CONFDIR
 
 # Control flow logic
