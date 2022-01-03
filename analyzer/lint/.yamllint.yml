@@ -1,17 +1,16 @@
 ---
 # https://yamllint.readthedocs.io/en/stable/rules.html#
-
 extends: default
-
 locale: en_US.UTF-8
-
 ignore: |
-  ../../vendor/
-  ../../node_modules/
+  vendor/ |
+  node_modules/ |
   *.template.yaml
-
 rules:
-  indentation: enable
+  indentation:
+    spaces: 2
+    indent-sequences: true
+    check-multi-line-strings: false
   line-length:
     max: 100
     allow-non-breakable-words: true
