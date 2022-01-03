@@ -189,7 +189,7 @@ else
 fi
 
 # Run json lint
-if false; then
+if true; then
   chmod +x run_jsonlint.sh
   ./run_jsonlint.sh -l "${L_FLAG}"
   ((result = $?))

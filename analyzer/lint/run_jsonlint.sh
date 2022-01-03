@@ -15,7 +15,7 @@ readonly PATH_TOPLEVEL
 PATH_SCRIPTDIR="$(dirname "$(realpath "$0")")"
 readonly PATH_SCRIPTDIR
 readonly PATH_RCDIR="${PATH_TOPLEVEL}"
-readonly FILE_RC=""
+readonly FILE_RC=".editorconfig"
 readonly FILE_LOG="${PATH_SCRIPTDIR}""/jsonlint.log"
 readonly REGEX_PATTERNS="^(?!.*\/?!*(\.git|vendor|CHANGELOG.md)).*\.(json)$"
 

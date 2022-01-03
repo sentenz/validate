@@ -1,10 +1,7 @@
 {
   "workbench.colorTheme": "Default Dark+",
   "window.zoomLevel": -2,
-  // Please install https://marketplace.visualstudio.com/items?itemName=xaver.clang-format to take advantage of `clang-format` in VSCode.
-  // (See https://clang.llvm.org/docs/ClangFormat.html for more info `clang-format`.)
   "clang-format.executable": "${workspaceRoot}/node_modules/.bin/clang-format",
-  // Exclude third party modules and build artifacts from the editor watchers/searches.
   "files.watcherExclude": {
     "**/.git/objects/**": true,
     "**/.git/subtree-cache/**": true,
@@ -25,8 +22,6 @@
   "files.eol": "\n",
   "git.ignoreLimitWarning": true,
   "shellformat.useEditorConfig": true,
-  // "prettier.configPath": "${workspaceRoot}",
-  // "commitlint.config.file": "${workspaceRoot}/.commitlintrc.js",
   "editor.formatOnSave": false,
   "editor.defaultFormatter": null,
   "[markdown]": {
@@ -38,11 +33,11 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[json]": {
-    "editor.formatOnSave": false,
+    "editor.formatOnSave": true,
     "editor.defaultFormatter": "vscode.json-language-features"
   },
   "[jsonc]": {
-    "editor.formatOnSave": false,
+    "editor.formatOnSave": true,
     "editor.defaultFormatter": "vscode.json-language-features"
   },
   "[javascript]": {

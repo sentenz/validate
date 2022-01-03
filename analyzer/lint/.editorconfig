@@ -1,0 +1,16 @@
+# https://editorconfig.org/
+
+# top-level EditorConfig file
+root = true
+
+[**/node_modules/*]
+ignore = true
+
+[**/vendor/*]
+ignore = true
+
+
+[*.json]
+indent_size = 2
+indent_style = space
+insert_final_newline = true
