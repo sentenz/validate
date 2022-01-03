@@ -32,12 +32,12 @@ jobs:
         run: |
           npm run setup:validate
 
-      - name: Validating Project
+      - name: Validate Project
         run: |
           npm run lint:ci
         continue-on-error: true
 
-      - name: Uploading Artifacts
+      - name: Upload Artifacts
         uses: actions/upload-artifact@v2
         with:
           name: validate-log-artifact
@@ -59,7 +59,7 @@ jobs:
           node-version: 12
           cache: npm
 
-      - name: Install NPM CI
+      - name: Install NPM
         run: |
           npm ci --ignore-scripts
 
