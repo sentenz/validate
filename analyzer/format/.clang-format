@@ -66,7 +66,7 @@ ForEachMacros:
   - foreach
   - Q_FOREACH
   - BOOST_FOREACH
-# Specify the #include statement order.  This implements the order mandated by the Google C++ Style
+# Specify the #include statement order. This implements the order mandated by the Google C++ Style
 # Guide: related header, C headers, C++ headers, library headers, and finally the project headers.
 #
 # To obtain updated lists of system headers used in the below expressions, see:
