@@ -1,29 +1,29 @@
 # `/todo`
 
-- [Clang Analyzer](#clang-analyzer)
-  - [Requirements](#requirements)
-  - [Install](#install)
-  - [Usage](#usage)
-  - [Configuration](#configuration)
-- [Valgrind](#valgrind)
-  - [Requirements](#requirements-1)
-  - [Install](#install-1)
-  - [Usage](#usage-1)
-  - [Configuration](#configuration-1)
+- [1. Clang Analyzer](#1-clang-analyzer)
+  - [1.1. Requirements](#11-requirements)
+  - [1.2. Install](#12-install)
+  - [1.3. Usage](#13-usage)
+  - [1.4. Configuration](#14-configuration)
+- [2. Valgrind](#2-valgrind)
+  - [2.1. Requirements](#21-requirements)
+  - [2.2. Install](#22-install)
+  - [2.3. Usage](#23-usage)
+  - [2.4. Configuration](#24-configuration)
 
-## Clang Analyzer
+## 1. Clang Analyzer
 
 [scan-build](https://github.com/rizsotto/scan-build) is a package designed to wrap a build so that all calls to gcc/clang are intercepted and logged into a compilation database and/or piped to the clang static analyzer. Includes intercept-build tool, which logs the build, as well as scan-build tool, which logs the build and runs the clang static analyzer on it.
 
 See [scan-build docs](http://clang-analyzer.llvm.org/scan-build.html)
 
-### Requirements
+### 1.1. Requirements
 
 Python 3.7 or higher.
 
 `pip` is the package installer for Python. You can use pip to install packages from the Python Package Index and other indexes.
 
-### Install
+### 1.2. Install
 
 It's available from the Python Package Index.
 
@@ -31,7 +31,7 @@ It's available from the Python Package Index.
 pip install scan-build
 ```
 
-### Usage
+### 1.3. Usage
 
 Generally speaking, the `intercept-build` and `analyze-build` tools together does the same job as `scan-build` does. So, you can expect the same output from this line as scan-build would do:
 
@@ -46,13 +46,13 @@ intercept-build <your build command>
 analyze-build
 ```
 
-### Configuration
+### 1.4. Configuration
 
 ```bash
 
 ```
 
-## Valgrind
+## 2. Valgrind
 
 [Valgrind](https://www.valgrind.org/) is an instrumentation framework for building dynamic analysis tools. There are Valgrind tools that can automatically detect many memory management and threading bugs, and profile your programs in detail.
 
@@ -62,17 +62,17 @@ Related:
 
 - [valgrind - github](https://github.com/tklengyel/valgrind)
 
-### Requirements
+### 2.1. Requirements
 
 `apt` package management system for installing, upgrading, configuring, and removing software.
 
-### Install
+### 2.2. Install
 
 ```bash
 sudo apt install -y valgrind
 ```
 
-### Usage
+### 2.3. Usage
 
 Valgrind [manual-core](https://valgrind.org/docs/manual/manual-core.html) describes the Valgrind core services, command-line options and behaviours.
 
@@ -81,7 +81,7 @@ Valgrind [manual-core](https://valgrind.org/docs/manual/manual-core.html) descri
 valgrind --tool=memcheck --leak-check=full --show-leak-kinds=all --track-origins=yes --show-reachable=yes --error-limit=no -q ./<executable>
 ```
 
-### Configuration
+### 2.4. Configuration
 
 When running valgrind, it will check in the current directory for a file named `~/.valgrindrc` or `./.valgrindrc` (or a file specified via `--suppressions=<filename>`).
 

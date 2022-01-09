@@ -1,29 +1,29 @@
 # `/legal`
 
-- [Licensecheck](#licensecheck)
-  - [Requirements](#requirements)
-  - [Install](#install)
-  - [Usage](#usage)
-- [Licensing](#licensing)
-  - [Requirements](#requirements-1)
-  - [Install](#install-1)
-  - [Usage](#usage-1)
+- [1. Licensecheck](#1-licensecheck)
+  - [1.1. Requirements](#11-requirements)
+  - [1.2. Install](#12-install)
+  - [1.3. Usage](#13-usage)
+- [2. Licensing](#2-licensing)
+  - [2.1. Requirements](#21-requirements)
+  - [2.2. Install](#22-install)
+  - [2.3. Usage](#23-usage)
 
-## Licensecheck
+## 1. Licensecheck
 
 The [licensecheck](https://github.com/google/licensecheck) package scans source texts for known licenses. The design aims never to give a false positive. It also reports matches of known license URLs.
 
-### Requirements
+### 1.1. Requirements
 
 `apt` package management system for installing, upgrading, configuring, and removing software.
 
-### Install
+### 1.2. Install
 
 ```bash
 sudo apt install -y licensecheck
 ```
 
-### Usage
+### 1.3. Usage
 
 ```bash
 licensecheck --check '.*' --recursive --deb-machine --lines 0 *
@@ -49,21 +49,21 @@ licensecheck --copyright --deb-machine --recursive --lines 0 --check '.*' --igno
 ^.*\.(go)$                                  match file extension
 ```
 
-## Licensing
+## 2. Licensing
 
 [licensing](https://code.tools/man/1/licensing/) - a program for adding license notices to files.
 
-### Requirements
+### 2.1. Requirements
 
 `apt` package management system for installing, upgrading, configuring, and removing software.
 
-### Install
+### 2.2. Install
 
 ```bash
 sudo apt install -y licenseutils
 ```
 
-### Usage
+### 2.3. Usage
 
 ```bash
 licensing --help

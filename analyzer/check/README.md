@@ -1,38 +1,38 @@
 # `/check`
 
-- [Markdown Link Check](#markdown-link-check)
-  - [Requirements](#requirements)
-  - [Install](#install)
-  - [Usage](#usage)
-  - [Configuration](#configuration)
-- [Markdown Spellcheck](#markdown-spellcheck)
-  - [Requirements](#requirements-1)
-  - [Install](#install-1)
-  - [Usage](#usage-1)
-  - [Configuration](#configuration-1)
-- [Alex](#alex)
-  - [Requirements](#requirements-2)
-  - [Install](#install-2)
-  - [Usage](#usage-2)
-  - [Configuration](#configuration-2)
-    - [Ignoring files](#ignoring-files)
-    - [Resource files](#resource-files)
-- [Codespell](#codespell)
-  - [Requirements](#requirements-3)
-  - [Install](#install-3)
-  - [Usage](#usage-3)
-  - [Configuration](#configuration-3)
+- [1. Markdown Link Check](#1-markdown-link-check)
+  - [1.1. Requirements](#11-requirements)
+  - [1.2. Install](#12-install)
+  - [1.3. Usage](#13-usage)
+  - [1.4. Configuration](#14-configuration)
+- [2. Markdown Spellcheck](#2-markdown-spellcheck)
+  - [2.1. Requirements](#21-requirements)
+  - [2.2. Install](#22-install)
+  - [2.3. Usage](#23-usage)
+  - [2.4. Configuration](#24-configuration)
+- [3. Alex](#3-alex)
+  - [3.1. Requirements](#31-requirements)
+  - [3.2. Install](#32-install)
+  - [3.3. Usage](#33-usage)
+  - [3.4. Configuration](#34-configuration)
+    - [3.4.1. Ignoring files](#341-ignoring-files)
+    - [3.4.2. Resource files](#342-resource-files)
+- [4. Codespell](#4-codespell)
+  - [4.1. Requirements](#41-requirements)
+  - [4.2. Install](#42-install)
+  - [4.3. Usage](#43-usage)
+  - [4.4. Configuration](#44-configuration)
 
-## Markdown Link Check
+## 1. Markdown Link Check
 
 [markdown-link-check](https://github.com/tcort/markdown-link-check) extracts links from markdown texts and checks whether each link is alive or broken.
 
-### Requirements
+### 1.1. Requirements
 
 - NPM 6.14.14 or higher.
 - Node 12+
 
-### Install
+### 1.2. Install
 
 To add the module to your project, run:
 
@@ -46,7 +46,7 @@ To install the command line tool globally, run:
 npm install -g markdown-link-check
 ```
 
-### Usage
+### 1.3. Usage
 
 The [command line tool](https://github.com/tcort/markdown-link-check#command-line-tool) optionally takes 1 argument, the file name or http/https URL. If not supplied, the tool reads from standard input.
 
@@ -61,7 +61,7 @@ markdown-link-check ./README.md
 find . -name \*.md -exec markdown-link-check {} \;
 ```
 
-### Configuration
+### 1.4. Configuration
 
 Command line options `-c` can also be specified in a config file.
 
@@ -101,22 +101,22 @@ Example:
 }
 ```
 
-## Markdown Spellcheck
+## 2. Markdown Spellcheck
 
 [markdown-spellcheck](https://github.com/lukeapage/node-markdown-spellcheck) reads markdown files and spellchecks them, using [open source Hunspell dictionary files](https://github.com/lukeapage/node-markdown-spellcheck#dictionaries-being-used).
 
-### Requirements
+### 2.1. Requirements
 
 - NPM 6.14.14 or higher.
 - Node 12+
 
-### Install
+### 2.2. Install
 
 ```bash
 npm i -g markdown-spellcheck
 ```
 
-### Usage
+### 2.3. Usage
 
 ```bash
 # Interactive mode
@@ -147,7 +147,7 @@ I have a nise sentenz.
   nose
 ```
 
-### Configuration
+### 2.4. Configuration
 
 All exclusions will be stored in a `.spelling` file in the directory from which you run the command.
 
@@ -163,22 +163,22 @@ Changelog
 Changelogs
 ```
 
-## Alex
+## 3. Alex
 
 [alex](https://github.com/get-alex/alex) catch insensitive, inconsiderate writing.
 
-### Requirements
+### 3.1. Requirements
 
 - NPM 6.14.14 or higher.
 - Node 12+
 
-### Install
+### 3.2. Install
 
 ```bash
 npm install -g alex
 ```
 
-### Usage
+### 3.3. Usage
 
 The CLI searches for files with a markdown or text extension when given directories (alex will find readme.md and path/to/file.txt).
 
@@ -186,9 +186,9 @@ The CLI searches for files with a markdown or text extension when given director
 alex .
 ```
 
-### Configuration
+### 3.4. Configuration
 
-#### [Ignoring files](https://github.com/get-alex/alex#ignoring-files)
+#### 3.4.1. [Ignoring files](https://github.com/get-alex/alex#ignoring-files)
 
 To prevent files from being found, create an `.alexignore` file:
 
@@ -198,7 +198,7 @@ CODE_OF_CONDUCT.md
 vendor/
 ```
 
-#### [Resource files](https://github.com/get-alex/alex#configuration)
+#### 3.4.2. [Resource files](https://github.com/get-alex/alex#configuration)
 
 You can control alex through `.alexrc.yml` configuration files:
 
@@ -209,21 +209,21 @@ allow:
   - european
 ```
 
-## Codespell
+## 4. Codespell
 
 [codespell](https://github.com/codespell-project/codespell) fix common misspellings in text files. It's designed primarily for checking misspelled words in source code, but it can be used with other files as well. It does not check for word membership in a complete dictionary, but instead looks for a set of common misspellings. This also means it shouldn't generate false-positives when you use a niche term it doesn't know about.
 
-### Requirements
+### 4.1. Requirements
 
 Python 3.7 or higher.
 
-### Install
+### 4.2. Install
 
 ```bash
 pip install codespell
 ```
 
-### Usage
+### 4.3. Usage
 
 For more in depth info please check usage with `codespell -h`.
 
@@ -245,7 +245,7 @@ codespell \
     --skip="*.json,*.txt,*.log,.git,./node_modules,./vendor"
 ```
 
-### Configuration
+### 4.4. Configuration
 
 Command line options can also be specified in a config file.
 

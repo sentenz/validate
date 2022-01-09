@@ -1,79 +1,79 @@
 # `/linter`
 
-- [Clang-Tidy](#clang-tidy)
-  - [Requirements](#requirements)
-  - [Install](#install)
-  - [Usage](#usage)
-- [Cpplint](#cpplint)
-  - [Requirements](#requirements-1)
-  - [Install](#install-1)
-  - [Usage](#usage-1)
-  - [Configuration](#configuration)
-- [Cppcheck](#cppcheck)
-  - [Requirements](#requirements-2)
-  - [Install](#install-2)
-  - [Usage](#usage-2)
-  - [Configuration](#configuration-1)
-- [Golangci-lint](#golangci-lint)
-  - [Requirements](#requirements-3)
-  - [Install](#install-3)
-  - [Usage](#usage-3)
-  - [Configuration](#configuration-2)
-  - [Troubleshoot](#troubleshoot)
-- [Shellcheck](#shellcheck)
-  - [Requirements](#requirements-4)
-  - [Install](#install-4)
-  - [Usage](#usage-4)
-  - [Configuration](#configuration-3)
-- [Commitlint](#commitlint)
-  - [Requirements](#requirements-5)
-  - [Install](#install-5)
-  - [Uninstall](#uninstall)
-  - [Usage](#usage-5)
-  - [Configuration](#configuration-4)
-- [Makrdownlint](#makrdownlint)
-  - [Requirements](#requirements-6)
-  - [Install](#install-6)
-  - [Uninstall](#uninstall-1)
-  - [Usage](#usage-6)
-  - [Configuration](#configuration-5)
-- [Yamllint](#yamllint)
-  - [Requirements](#requirements-7)
-  - [Install](#install-7)
-  - [Usage](#usage-7)
-  - [Configuration](#configuration-6)
-- [Jsonlint](#jsonlint)
-  - [Requirements](#requirements-8)
-  - [Install](#install-8)
-  - [Uninstall](#uninstall-2)
-  - [Usage](#usage-8)
-- [Remark](#remark)
-  - [Requirements](#requirements-9)
-  - [Install](#install-9)
-  - [Uninstall](#uninstall-3)
-  - [Usage](#usage-9)
-  - [Configuration](#configuration-7)
-- [Dockerfilelint](#dockerfilelint)
-  - [Requirements](#requirements-10)
-  - [Install](#install-10)
-  - [Usage](#usage-10)
-  - [Configuration](#configuration-8)
+- [1. Clang-Tidy](#1-clang-tidy)
+  - [1.1. Requirements](#11-requirements)
+  - [1.2. Install](#12-install)
+  - [1.3. Usage](#13-usage)
+- [2. Cpplint](#2-cpplint)
+  - [2.1. Requirements](#21-requirements)
+  - [2.2. Install](#22-install)
+  - [2.3. Usage](#23-usage)
+  - [2.4. Configuration](#24-configuration)
+- [3. Cppcheck](#3-cppcheck)
+  - [3.1. Requirements](#31-requirements)
+  - [3.2. Install](#32-install)
+  - [3.3. Usage](#33-usage)
+  - [3.4. Configuration](#34-configuration)
+- [4. Golangci-lint](#4-golangci-lint)
+  - [4.1. Requirements](#41-requirements)
+  - [4.2. Install](#42-install)
+  - [4.3. Usage](#43-usage)
+  - [4.4. Configuration](#44-configuration)
+  - [4.5. Troubleshoot](#45-troubleshoot)
+- [5. Shellcheck](#5-shellcheck)
+  - [5.1. Requirements](#51-requirements)
+  - [5.2. Install](#52-install)
+  - [5.3. Usage](#53-usage)
+  - [5.4. Configuration](#54-configuration)
+- [6. Commitlint](#6-commitlint)
+  - [6.1. Requirements](#61-requirements)
+  - [6.2. Install](#62-install)
+  - [6.3. Uninstall](#63-uninstall)
+  - [6.4. Usage](#64-usage)
+  - [6.5. Configuration](#65-configuration)
+- [7. Makrdownlint](#7-makrdownlint)
+  - [7.1. Requirements](#71-requirements)
+  - [7.2. Install](#72-install)
+  - [7.3. Uninstall](#73-uninstall)
+  - [7.4. Usage](#74-usage)
+  - [7.5. Configuration](#75-configuration)
+- [8. Yamllint](#8-yamllint)
+  - [8.1. Requirements](#81-requirements)
+  - [8.2. Install](#82-install)
+  - [8.3. Usage](#83-usage)
+  - [8.4. Configuration](#84-configuration)
+- [9. Jsonlint](#9-jsonlint)
+  - [9.1. Requirements](#91-requirements)
+  - [9.2. Install](#92-install)
+  - [9.3. Uninstall](#93-uninstall)
+  - [9.4. Usage](#94-usage)
+- [10. Remark](#10-remark)
+  - [10.1. Requirements](#101-requirements)
+  - [10.2. Install](#102-install)
+  - [10.3. Uninstall](#103-uninstall)
+  - [10.4. Usage](#104-usage)
+  - [10.5. Configuration](#105-configuration)
+- [11. Dockerfilelint](#11-dockerfilelint)
+  - [11.1. Requirements](#111-requirements)
+  - [11.2. Install](#112-install)
+  - [11.3. Usage](#113-usage)
+  - [11.4. Configuration](#114-configuration)
 
-## Clang-Tidy
+## 1. Clang-Tidy
 
 [clang-tidy](https://clang.llvm.org/extra/clang-tidy/) is a clang-based C++ **linter** tool. Its purpose is to provide an extensible framework for diagnosing and fixing typical programming errors, like style violations, interface misuse, or bugs that can be deduced via static analysis. clang-tidy is modular and provides a convenient interface for writing new checks.
 
-### Requirements
+### 1.1. Requirements
 
 `apt` package management system for installing, upgrading, configuring, and removing software.
 
-### Install
+### 1.2. Install
 
 ```bash
 sudo apt install -y clang-tidy
 ```
 
-### Usage
+### 1.3. Usage
 
 clang-tidy is a LibTooling-based tool, and it’s easier to work with if you set up a compile command database for your project (for an example of how to do this see [How To Setup Tooling For LLVM](https://clang.llvm.org/docs/HowToSetupToolingForLLVM.html)). You can also specify compilation options on the command line after `--`:
 
@@ -87,15 +87,15 @@ clang-tidy has its own checks and can also run Clang static analyzer checks. Eac
 clang-tidy test.cpp -checks=-*,clang-analyzer-*,-clang-analyzer-cplusplus*
 ```
 
-## Cpplint
+## 2. Cpplint
 
 [cpplint](https://github.com/cpplint/cpplint) is a command-line tool to check C/C++ files for style issues following [Google's C++ style guide](https://google.github.io/styleguide/cppguide.html).
 
-### Requirements
+### 2.1. Requirements
 
 Python 3.7 or higher.
 
-### Install
+### 2.2. Install
 
 To install cpplint from PyPI, run:
 
@@ -103,7 +103,7 @@ To install cpplint from PyPI, run:
 sudo pip install cpplint
 ```
 
-### Usage
+### 2.3. Usage
 
 Run it with:
 
@@ -117,7 +117,7 @@ For full usage instructions, run:
 cpplint --help
 ```
 
-### Configuration
+### 2.4. Configuration
 
 cpplint supports per-directory configurations specified in [CPPLINT.cfg](https://nvuillam.github.io/mega-linter/descriptors/c_cpplint/) files. CPPLINT.cfg file can contain a number of key=value pairs. Currently the following options are supported:
 
@@ -140,21 +140,21 @@ filter=-readability/casting
 filter=-runtime/arrays
 ```
 
-## Cppcheck
+## 3. Cppcheck
 
 [cppcheck](https://github.com/danmar/cppcheck) is designed for both C and C++.
 
-### Requirements
+### 3.1. Requirements
 
 `apt` package management system for installing, upgrading, configuring, and removing software.
 
-### Install
+### 3.2. Install
 
 ```bash
 sudo apt install -y cppcheck
 ```
 
-### Usage
+### 3.3. Usage
 
 ```bash
 cppcheck .
@@ -162,7 +162,7 @@ cppcheck .
 cppcheck --enable=warning --suppressions-list=cppcheck-suppressions.txt --template='[{file}:{line}]:({severity}),{id},{message}' .
 ```
 
-### Configuration
+### 3.4. Configuration
 
 Configure `cppcheck-suppressions.txt` in the project.
 
@@ -175,17 +175,17 @@ unusedFunction
 *:../../node_modules
 ```
 
-## Golangci-lint
+## 4. Golangci-lint
 
 [golangci-lint](https://github.com/golangci/golangci-lint) is a fast Go linters runner. It runs linters in parallel, uses caching, supports yaml config, has integrations with all major IDE and has dozens of linters included.
 
 See a list of supported [linters](https://golangci-lint.run/usage/linters/).
 
-### Requirements
+### 4.1. Requirements
 
 Go 1.15 or higher.
 
-### Install
+### 4.2. Install
 
 Most [installations of golangci-lint](https://golangci-lint.run/usage/install/#local-installation) are performed for CI.
 
@@ -195,13 +195,13 @@ go mod vendor
 export PATH=${PATH}:${HOME}/go/bin
 ```
 
-### Usage
+### 4.3. Usage
 
 ```bash
 golangci-lint run ./...
 ```
 
-### Configuration
+### 4.4. Configuration
 
 - [Editor Integration](https://golangci-lint.run/usage/integrations/)
 
@@ -308,31 +308,31 @@ golangci-lint run ./...
   - maligned: (since v1.38.0) - Tool to detect Go structs that would take less memory if their fields were sorted `[fast: false, auto-fix: false]`
   - scopelint: (since v1.39.0) - Scopelint checks for unpinned variables in go programs `[fast: true, auto-fix: false]`
 
-### Troubleshoot
+### 4.5. Troubleshoot
 
 Issue [#14](https://github.com/actions/setup-go/issues/14) - Add $GOPATH/bin to $PATH.
 
-## Shellcheck
+## 5. Shellcheck
 
 [shellcheck](https://github.com/koalaman/shellcheck) - a shell script static analysis tool.
 
-### Requirements
+### 5.1. Requirements
 
 `apt` package management system for installing, upgrading, configuring, and removing software.
 
-### Install
+### 5.2. Install
 
 ```bash
 sudo apt install shellcheck
 ```
 
-### Usage
+### 5.3. Usage
 
 ```bash
 shellcheck *.sh
 ```
 
-### Configuration
+### 5.4. Configuration
 
 Unless --norc is used, ShellCheck will look for a file [.shellcheckrc](https://github.com/koalaman/shellcheck/issues/72) or shellcheckrc in the script's directory and each parent directory. If found, it will read key=value pairs from it and treat them as file-wide directives.
 
@@ -346,7 +346,7 @@ disable=SC2244
 disable=SC2230
 ```
 
-## Commitlint
+## 6. Commitlint
 
 [commitlint](https://github.com/conventional-changelog/commitlint) checks if your commit messages meet the [conventional commit](https://www.conventionalcommits.org/en/v1.0.0/) format.
 
@@ -355,24 +355,24 @@ Related:
 - [commitlint-github-action](https://github.com/wagoid/commitlint-github-action)
 - [commitlint-azure-pipelines-cli](https://yarnpkg.com/package/commitlint-azure-pipelines-cli)
 
-### Requirements
+### 6.1. Requirements
 
 - NPM 6.14.14 or higher.
 - Node 12+
 
-### Install
+### 6.2. Install
 
 ```bash
 sudo npm install -g @commitlint/cli @commitlint/config-conventional @commitlint/format
 ```
 
-### Uninstall
+### 6.3. Uninstall
 
 ```bash
 sudo npm uninstall -g @commitlint/cli @commitlint/config-conventional @commitlint/format
 ```
 
-### Usage
+### 6.4. Usage
 
 ```bash
 # Lint last commit from history
@@ -382,7 +382,7 @@ commitlint --from=HEAD~1 --config ".commitlintrc.js"
 commitlint --from "$(git rev-parse --abbrev-ref remotes/origin/HEAD)" --to "$(git rev-parse --abbrev-ref HEAD)" --config ".commitlintrc.js"
 ```
 
-### Configuration
+### 6.5. Configuration
 
 [Shared configuration](https://github.com/conventional-changelog/commitlint#shared-configuration) lists a number of shared configurations available to install and use with `commitlint`.
 
@@ -453,7 +453,7 @@ const Configuration = {
 module.exports = Configuration
 ```
 
-## Makrdownlint
+## 7. Makrdownlint
 
 [makrdownlint](https://github.com/markdownlint/markdownlint) a tool to check markdown files and flag style issues.
 
@@ -461,31 +461,31 @@ Related:
 
 [makrdownlint - npm](https://github.com/DavidAnson/markdownlint)
 
-### Requirements
+### 7.1. Requirements
 
 - NPM 6.14.14 or higher.
 - Node 12+
 
-### Install
+### 7.2. Install
 
 ```bash
 sudo npm install -g markdownlint markdownlint-cli
 ```
 
-### Uninstall
+### 7.3. Uninstall
 
 ```bash
 # Global & Local
 sudo npm uninstall -g markdownlint && npm uninstall markdownlint
 ```
 
-### Usage
+### 7.4. Usage
 
 ```bash
 markdownlint -j -c '.markdownlint.json' -i ".markdownlintignore" '**/*.md'
 ```
 
-### Configuration
+### 7.5. Configuration
 
 Markdownlint has several options you can configure.
 
@@ -516,17 +516,17 @@ node_modules/
 CHANGELOG.md
 ```
 
-## Yamllint
+## 8. Yamllint
 
 [yamllint](https://github.com/adrienverge/yamllint) a linter for YAML files.
 
 yamllint does not only check for syntax validity, but for weirdness like key repetition and cosmetic problems such as lines length, trailing spaces, indentation, etc.
 
-### Requirements
+### 8.1. Requirements
 
 Python 3.7 or higher.
 
-### Install
+### 8.2. Install
 
 Using pip, the Python package manager:
 
@@ -534,7 +534,7 @@ Using pip, the Python package manager:
 pip install --user yamllint
 ```
 
-### Usage
+### 8.3. Usage
 
 ```bash
 # Lint all YAML files in a directory
@@ -547,7 +547,7 @@ yamllint -c /path/to/myconfig file-to-lint.yaml
 yamllint -d relaxed file.yaml
 ```
 
-### Configuration
+### 8.4. Configuration
 
 yamllint uses a set of rules to check source files for problems. Each rule is independent from the others, and can be turned on, turned off or tweaked. All these settings can be gathered in a [configuration file](https://yamllint.readthedocs.io/en/stable/configuration.html).
 
@@ -579,16 +579,16 @@ rules:
     allow-non-breakable-inline-mappings: false
 ```
 
-## Jsonlint
+## 9. Jsonlint
 
 [jsonlint](https://github.com/zaach/jsonlint) a pure JavaScript version of the service provided at [jsonlint.com](https://jsonlint.com/).
 
-### Requirements
+### 9.1. Requirements
 
 - NPM 6.14.14 or higher.
 - Node 12+
 
-### Install
+### 9.2. Install
 
 Install jsonlint with npm to use the command line interface:
 
@@ -600,14 +600,14 @@ npm install jsonlint
 sudp npm install -g jsonlint
 ```
 
-### Uninstall
+### 9.3. Uninstall
 
 ```bash
 # Global & Local
 sudo npm uninstall -g jsonlint && npm uninstall jsonlint
 ```
 
-### Usage
+### 9.4. Usage
 
 ```bash
 # Run json linting
@@ -617,16 +617,16 @@ find . -type d \( -name node_modules -o -name vendor -o -regex ".*(package.json|
 jsonlint --in-place *.json
 ```
 
-## Remark
+## 10. Remark
 
 [remark-lint](https://github.com/remarkjs/remark-lint) is plugins to lint Markdown.
 
-### Requirements
+### 10.1. Requirements
 
 - NPM 6.14.14 or higher.
 - Node 12+
 
-### Install
+### 10.2. Install
 
 ```bash
 # Local
@@ -636,20 +636,20 @@ npm install remark-cli remark-preset-lint-recommended
 sudo npm i -g remark-cli remark-preset-lint-recommended
 ```
 
-### Uninstall
+### 10.3. Uninstall
 
 ```bash
 # Global & Local
 sudo npm uninstall -g remark && npm uninstall remark
 ```
 
-### Usage
+### 10.4. Usage
 
 ```bash
 remark readme.md
 ```
 
-### Configuration
+### 10.5. Configuration
 
 [remark-lint config](https://github.com/remarkjs/remark-lint#configure) has own mechanism to use configuration files such as `.remarkrc`, `.remarkrc.yml`, or `package.json`.
 
@@ -679,22 +679,22 @@ For example, you can configure plugins via the following `.remarkrc.yml` file:
       ignore-path: vendor
   ```
 
-## Dockerfilelint
+## 11. Dockerfilelint
 
 [dockerfilelint](https://github.com/replicatedhq/dockerfilelint) a linter for Docker files. dockerfilelint is an node module that analyzes a Dockerfile and looks for common mistakes and helps enforce best practices.
 
-### Requirements
+### 11.1. Requirements
 
 - NPM 6.14.14 or higher.
 - Node 12+
 
-### Install
+### 11.2. Install
 
 ```bash
 sudo npm install -g dockerfilelint
 ```
 
-### Usage
+### 11.3. Usage
 
 - CLI:
 
@@ -702,7 +702,7 @@ sudo npm install -g dockerfilelint
   ./bin/dockerfilelint <path/to/Dockerfile>
   ```
 
-### Configuration
+### 11.4. Configuration
 
 You can configure the linter by creating a `.dockerfilelintrc` with the following syntax:
 

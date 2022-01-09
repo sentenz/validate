@@ -1,14 +1,13 @@
 # `/release`
 
-- [`/release`](#release)
-  - [Semantic-Release](#semantic-release)
-    - [Requirements](#requirements)
-    - [Install](#install)
-    - [Troubleshooting](#troubleshooting)
-  - [Usage](#usage)
-  - [Configuration](#configuration)
+- [1. Semantic-Release](#1-semantic-release)
+  - [1.1. Requirements](#11-requirements)
+  - [1.2. Install](#12-install)
+  - [1.3. Troubleshooting](#13-troubleshooting)
+- [2. Usage](#2-usage)
+- [3. Configuration](#3-configuration)
 
-## Semantic-Release
+## 1. Semantic-Release
 
 [semantic-release](https://github.com/semantic-release/semantic-release) automates the whole package release workflow including: determining the next version number, generating the release notes and publishing the package.
 
@@ -21,7 +20,7 @@ Related:
 - [semantic-release - azure](https://www.npmjs.com/package/semantic-release-ado?activeTab=readme)
 - [semantic-commitlint](https://github.com/adriancarriger/semantic-commitlint)
 
-### Requirements
+### 1.1. Requirements
 
 In order to use **semantic-release** you need:
 
@@ -31,7 +30,7 @@ In order to use **semantic-release** you need:
 - [Node.js](https://nodejs.org) version [10.19 or higher](https://github.com/semantic-release/semantic-release/blob/master/docs/support/node-version.md) installed in your Continuous Integration environment
 - NPM 6.14.14 or higher
 
-### Install
+### 1.2. Install
 
 1. [Creating a package.json file](https://docs.npmjs.com/creating-a-package-json-file)
 
@@ -69,7 +68,7 @@ In order to use **semantic-release** you need:
    npx semantic-release-cli setup
    ```
 
-### [Troubleshooting](https://github.com/semantic-release/semantic-release/blob/master/docs/support/troubleshooting.md)
+### 1.3. [Troubleshooting](https://github.com/semantic-release/semantic-release/blob/master/docs/support/troubleshooting.md)
 
 To verify if your package name is available you can use [npm-name-cli](https://github.com/sindresorhus/npm-name-cli):
 
@@ -87,7 +86,7 @@ npm i --package-lock-only
 sudo npm -g ci
 ```
 
-## Usage
+## 2. Usage
 
 ```bash
 # Run semantic-release in ci
@@ -150,7 +149,7 @@ Examples of using semantic-release on the pipeline job:
         GIT_CREDENTIALS: $(System.AccessToken)
   ```
 
-## Configuration
+## 3. Configuration
 
 semantic-release [options](https://github.com/semantic-release/semantic-release/blob/master/docs/usage/configuration.md#configuration), mode and [plugins](https://github.com/semantic-release/semantic-release/blob/master/docs/usage/plugins.md) can be set via either:
 
