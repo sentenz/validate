@@ -1,11 +1,11 @@
 # `scripts/validate`
 
-- [1. Install](#1-install)
-- [2. Uninstall](#2-uninstall)
-- [3. Update](#3-update)
-- [4. Usage](#4-usage)
+- [Install](#install)
+- [Uninstall](#uninstall)
+- [Update](#update)
+- [Usage](#usage)
 
-## 1. Install
+## Install
 
 How to link to documentation or integrate it into projects can be found here: [Usage](https://dev.azure.com/SMCEMEA/DE-PCD-General/_git/DE-PCD-General?path=/&version=GBmain&_a=contents&anchor=usage)
 
@@ -54,7 +54,7 @@ How to link to documentation or integrate it into projects can be found here: [U
 
    If the output is empty, start from the beginning.
 
-## 2. Uninstall
+## Uninstall
 
 1. Remove a Git Submodule
 
@@ -63,7 +63,7 @@ How to link to documentation or integrate it into projects can be found here: [U
    git rm --cached scripts/validate
    ```
 
-## 3. Update
+## Update
 
 1. Update a Git Submodule
 
@@ -71,7 +71,7 @@ How to link to documentation or integrate it into projects can be found here: [U
    git submodule update --remote --recursive --merge
    ```
 
-## 4. Usage
+## Usage
 
 Run the `npm run setup` command to install the git submodules and to install the analyzer environment.
 
