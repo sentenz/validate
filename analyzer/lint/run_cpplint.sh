@@ -67,7 +67,7 @@ readonly LIST
 
 # Run analyzer
 if [[ -n "${LIST}" ]]; then
-  readonly CLI="cpplint --exclude=node_modules --recursive"
+  readonly CLI="cpplint --recursive"
 
   (
     cd "${PATH_CONFDIR}" || exit
