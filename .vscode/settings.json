@@ -63,5 +63,8 @@
   ],
   "git.ignoreLimitWarning": true,
   "shellformat.useEditorConfig": true,
-  "clang-format.executable": "${workspaceRoot}/node_modules/.bin/clang-format"
+  "clang-format.executable": "${workspaceRoot}/node_modules/.bin/clang-format",
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
 }
