@@ -15,10 +15,8 @@ readonly PATH_TOPLEVEL
 PATH_SCRIPTDIR="$(dirname "$(realpath "$0")")"
 readonly PATH_SCRIPTDIR
 readonly PATH_RCDIR="${PATH_TOPLEVEL}"
+readonly PATH_COMPILE_COMMANDS_DB="${PATH_TOPLEVEL}/pnio_src/smc/build/cmake/build"
 readonly FILE_RC=".clang-tidy"
-readonly FILE_RC_FLAG=".clang-tidy-flag"
-readonly FILE_RC_MACRO=".clang-tidy-macro"
-readonly FILE_RC_INCLUDE=".clang-tidy-include"
 readonly FILE_RC_IGNORE=".clang-tidy-ignore"
 readonly FILE_LOG="${PATH_SCRIPTDIR}""/clang-tidy.log"
 readonly REGEX_PATTERNS="^(?!.*\/?!*(\.git|vendor|CHANGELOG.md)).*\.(h|hpp|hxx|c|cc|cpp|cxx)$"
@@ -38,9 +36,6 @@ readonly L_FLAG
 
 readonly -a resources=(
   "${FILE_RC}"
-  "${FILE_RC_FLAG}"
-  "${FILE_RC_MACRO}"
-  "${FILE_RC_INCLUDE}"
   "${FILE_RC_IGNORE}"
 )
 
@@ -74,15 +69,8 @@ fi
 readonly LIST
 
 # Run analyzer
-C_FLAGS="$(< "${PATH_CONFDIR}"/${FILE_RC_FLAG})"
-readonly C_FLAGS
-C_MACROS="$(< "${PATH_CONFDIR}"/${FILE_RC_MACRO})"
-readonly C_MACROS
-C_INCLUDES="$(< "${PATH_CONFDIR}"/${FILE_RC_INCLUDE})"
-readonly C_INCLUDES
-
 if [[ -n "${LIST}" ]]; then
-  readonly CLI="clang-tidy ${LIST} -- ${C_MACROS[*]} ${C_FLAGS[*]} ${C_INCLUDES[*]}"
+  readonly CLI="clang-tidy -p=${PATH_COMPILE_COMMANDS_DB} ${LIST}"
 
   (
     cd "${PATH_CONFDIR}" || exit

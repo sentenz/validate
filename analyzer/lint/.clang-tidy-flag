@@ -1,4 +1,0 @@
--std=c99 \
--fpic -shared \
--O2 \
--pipe
