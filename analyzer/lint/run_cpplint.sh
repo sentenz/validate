@@ -67,7 +67,7 @@ readonly LIST
 
 # Run analyzer
 if [[ -n "${LIST}" ]]; then
-  readonly CLI="cpplint --recursive"
+  readonly CLI="cpplint --quiet --recursive"
 
   (
     cd "${PATH_CONFDIR}" || exit

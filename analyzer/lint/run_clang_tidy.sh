@@ -94,8 +94,15 @@ else
 fi
 
 # Analyze log
-if [[ -f "${FILE_LOG}" && -s "${FILE_LOG}" ]]; then
-  exit 1
-else
-  rm -f "${FILE_LOG}"
+if [[ -f "${FILE_LOG}" ]]; then
+  ERRORS=$(grep -c "error:" "${FILE_LOG}" || true)
+  readonly ERRORS
+  WARNINGS=$(grep -c "warning:" "${FILE_LOG}" || true)
+  readonly WARNINGS
+
+  if [[ "${ERRORS}" -ne 0 || "${WARNINGS}" -ne 0 ]]; then
+    exit 1
+  else
+    rm -f "${FILE_LOG}"
+  fi
 fi
