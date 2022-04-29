@@ -260,3 +260,26 @@ Examples of version description of the `.releaserc.json` file with generic conte
   ```
 
   **Note**: In the example, the generated version number is stored in a variable called version.
+
+Use semantic-release to publish [non package.json](https://semantic-release.gitbook.io/semantic-release/support/faq#can-i-use-semantic-release-to-publish-non-javascript-packages).
+
+In addition, you will need to configure the semantic-release plugins to disable the @semantic-release/npm plugin which is used by default and use a plugin for your project type.
+
+If there is no specific plugin for your project type you can use the @semantic-release/exec plugin to publish the release with a shell command.
+Here is a basic example to create GitHub releases and use a shell command to publish:
+
+```json
+{
+  "plugins": [
+    "@semantic-release/commit-analyzer",
+    "@semantic-release/release-notes-generator",
+    "@semantic-release/github",
+    [
+      "@semantic-release/exec",
+      {
+        "publishCmd": "git tag ${nextRelease.version}"
+      }
+    ]
+  ]
+}
+```
