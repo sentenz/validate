@@ -1,7 +1,7 @@
 .PHONY: build test cover bench audit outdated
 
 setup/release:
-	cd scripts/release && chmod +x setup_release.sh && ./setup_release.sh
+	cd scripts && chmod +x setup_release.sh && ./setup_release.sh
 setup/validate:
 	cd scripts && chmod +x setup.sh && ./setup.sh
 
