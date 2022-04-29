@@ -32,7 +32,6 @@ readonly -a PIP_PACKAGES=(
   yamllint
 )
 readonly -a NPM_PACKAGES=(
-  npm-run-all
   alex
   prettier
   jsonlint
@@ -52,17 +51,6 @@ readonly -a NPM_PACKAGES=(
   @commitlint/cli
   @commitlint/config-conventional
   @commitlint/format
-  semantic-release
-  semantic-commitlint
-  semantic-release-commitlint
-  semantic-release-ado
-  @semantic-release/npm
-  @semantic-release/git
-  @semantic-release/changelog
-  @semantic-release/error
-  @semantic-release/github
-  @semantic-release/commit-analyzer
-  @semantic-release/release-notes-generator
   husky
   pre-commit
   commit-msg

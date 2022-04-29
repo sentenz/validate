@@ -1,0 +1,5 @@
+# Ignore code from clang-format checks
+build/*
+external/*
+node_modules/*
+vendor/*

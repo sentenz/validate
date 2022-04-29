@@ -69,7 +69,7 @@ readonly LIST
 
 # Run analyzer
 if [[ -n "${LIST}" ]]; then
-  readonly CLI="remark --no-stdout --no-color --silent -r ${PATH_RCDIR}/${FILE_RC}"
+  readonly CLI="remark --no-stdout --no-color --silent"
 
   (
     cd "${PATH_CONFDIR}" || exit

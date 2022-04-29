@@ -11,15 +11,15 @@
         ]
       }
     ],
-    "@semantic-release/release-notes-generator",
-    [
-      "@semantic-release/npm",
-      {
-        "npmPublish": false
-      }
-    ],
     "@semantic-release/changelog",
+    "@semantic-release/release-notes-generator",
     "@semantic-release/git",
-    "@semantic-release/github"
+    "@semantic-release/github",
+    [
+      "@semantic-release/exec",
+      {
+        "publishCmd": "git tag ${nextRelease.version}"
+      }
+    ]
   ]
 }
