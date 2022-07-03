@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/sentenz/validate/compare/v1.0.0...v1.1.0) (2022-07-03)
+
+
+### Features
+
+* lint pull-request message ([#9](https://github.com/sentenz/validate/issues/9)) ([3948512](https://github.com/sentenz/validate/commit/39485122dd1c99d18bbfdb87d115af3537d794c9)), closes [#8](https://github.com/sentenz/validate/issues/8)
+
 # 1.0.0 (2022-04-29)
 
 
