@@ -42,25 +42,8 @@ const Configuration = {
       2,
       "always",
       [
-        "api",
-        "assets",
-        "build",
-        "cmd",
-        "configs",
-        "deployments",
-        "docs",
-        "examples",
-        "external",
-        "githooks",
-        "init",
-        "internal",
-        "pkg",
         "scripts",
-        "test",
-        "tools",
-        "vendor",
-        "web",
-        "website",
+        "analyzer",
         "release",
       ],
     ],
@@ -93,6 +76,6 @@ const Configuration = {
   //     },
   //   },
   // },
-};
+}
 
-module.exports = Configuration;
+module.exports = Configuration

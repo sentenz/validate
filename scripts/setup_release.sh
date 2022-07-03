@@ -28,7 +28,7 @@ readonly -a NPM_PACKAGES=(
   # Default plugins
   #@semantic-release/npm
   #@semantic-release/github
-  #6@semantic-release/release-notes-generator
+  #@semantic-release/release-notes-generator
   #@semantic-release/commit-analyzer
 )
 
