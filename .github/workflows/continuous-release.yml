@@ -1,0 +1,26 @@
+---
+name: Continuous Release
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  release:
+    if: ${{ always() }}
+    name: continuous-release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Project
+        uses: actions/checkout@v3
+
+      - name: Setup Release
+        run: |
+          make setup/release
+
+      - name: Release Codebase
+        run: |
+          make release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
