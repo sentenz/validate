@@ -49,7 +49,7 @@ cd "${PATH_TOPLEVEL}" || exit
 
 LIST=""
 if [[ "${L_FLAG}" == "ci" ]]; then
-  LIST=$(commitlint --from origin/"${TARGET_BRANCH}" --to "${FETCH_HEAD}" --config "${PATH_CONFDIR}"/"${FILE_RC}")
+  LIST=$(commitlint --from origin/main --to origin/HEAD --config "${PATH_CONFDIR}"/"${FILE_RC}")
 elif [[ "${L_FLAG}" == "diff" || "${L_FLAG}" == "repo" ]]; then
   LIST=$(commitlint --from "$(git rev-parse --abbrev-ref remotes/origin/HEAD)" --to "$(git rev-parse --abbrev-ref HEAD)" --config "${PATH_CONFDIR}"/"${FILE_RC}")
 elif [[ "${L_FLAG}" == "staged" ]]; then
