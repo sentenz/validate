@@ -55,7 +55,7 @@ function install_npm_dependency() {
 
   local -i result=0
 
-  if ! npm list "${package}"@latest -g --depth=0 &> /dev/null; then
+  if ! npm list "${package}"@latest -g --depth=0 &>/dev/null; then
     sudo -H npm i --silent -g "${package}"@latest --unsafe-perm
     ((result |= $?))
   fi

@@ -38,15 +38,7 @@ const Configuration = {
         "test",
       ],
     ],
-    "scope-enum": [
-      2,
-      "always",
-      [
-        "scripts",
-        "analyzer",
-        "release",
-      ],
-    ],
+    "scope-enum": [2, "always", ["scripts", "analyzer", "release"]],
   },
 
   /*
